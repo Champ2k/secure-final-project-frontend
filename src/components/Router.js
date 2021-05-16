@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 
 import Booking from './screens/Booking'
 import Hostel from './screens/Hostel'
-
+import Navbar from './screens/nav'
 
 const Router = () => {
     return (
         <BrowserRouter>
-            <NavLink to="/" className="nav-item">Home</NavLink>{' '}
-            <NavLink to="/booking" className="nav-item">Booking</NavLink>{' '}
-            <NavLink to="/hostel" className="nav-item">Hostel</NavLink>{' '}
+            <Navbar />
             <Switch>
                 <Route path="/booking">
                     <Booking />
