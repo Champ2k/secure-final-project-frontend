@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../../styles/auth/Login.css';
 
@@ -16,15 +17,16 @@ async function loginUser(credentials) {
 export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const history = useHistory()
 
   const handleSubmit = async e => {
     e.preventDefault();
     const token = await loginUser({
       username,
       password
-    });
-    console.log(token)
+    })
     setToken(token);
+    history.push('/');
   }
 
   return(

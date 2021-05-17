@@ -1,10 +1,12 @@
 import React from 'react';
 
-export default function Logout({ setToken }) {
+export default function Logout({ setToken, deleteToken, deleteUserId }) {
 
   const handleLogout = async e => {
     e.preventDefault();
-    setToken('');
+    setToken();
+    deleteToken();
+    deleteUserId();
   }
 
   return(

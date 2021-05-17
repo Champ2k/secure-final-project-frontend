@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useCookie } from "react-use"
 import Select from 'react-select'
 import DatePicker from 'react-datepicker'
 
@@ -6,21 +7,8 @@ import '../../styles/screens/Booking.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const Booking = () => {
-
-    const getToken = () => {
-        const tokenString = localStorage.getItem('token');
-        const userToken = JSON.parse(tokenString);
-        return userToken?.data
-      };
-    
-    const getUserId = () => {
-    const IdString = localStorage.getItem('token');
-    const userId = JSON.parse(IdString);
-    return userId?.userId
-    };
-
-    const [token] = useState(getToken())
-    const [userId] = useState(getUserId())
+    const [valueToken, updateCookie, deleteCookie] = useCookie("token");
+    const [valueUser, updateCookieUser, deleteCookieUser] = useCookie("userId")
     const [hostel, setHostel] = useState([])
     const [booking, setBooking] = useState([])
     const [bookingPrice, setBookingPrice] = useState(0)
@@ -32,10 +20,10 @@ const Booking = () => {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${valueToken}`
             },
             body: JSON.stringify({
-                'userId' : userId,
+                'userId' : valueUser,
                 "hostelId": booking,
                 "checkInDate": startDate,
                 "checkOutDate": endDate
@@ -51,7 +39,7 @@ const Booking = () => {
             const hostelResponse = await fetch(`http://localhost:8000/hostel/`,{
                 method:'GET',
                 headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${valueToken}`
                 }
             })
             const hostelData = await hostelResponse.json();
@@ -92,7 +80,7 @@ const Booking = () => {
         console.log(postBooking)
         console.log(
             JSON.stringify({
-                'userId' : userId,
+                'userId' : valueUser,
                 "hostelId": booking,
                 "checkInDate": startDate,
                 "checkOutDate": endDate
