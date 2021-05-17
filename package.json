@@ -7,6 +7,8 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
+    "cookie-parser": "^1.4.5",
+    "google-maps-react": "^2.0.6",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-datepicker": "^3.8.0",
@@ -14,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
+    "react-use": "^17.2.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

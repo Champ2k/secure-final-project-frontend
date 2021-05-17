@@ -7,13 +7,15 @@ import Navbar from './screens/nav'
 import Carousel from './screens/carousel'
 import Login from './auth/Login'
 import useToken from './auth/useToken'
+import Logout from './auth/Logout'
 
 const Router = () => {
-    const { token, setToken } = useToken();
+    const { token, setToken, deleteToken, deleteUserId } = useToken();
+    console.log('route Token', token)
 
     return (
         <BrowserRouter>
-            <Navbar />
+            <Navbar token={token} setToken={setToken} deleteToken={deleteToken} deleteUserId={deleteUserId}/>
             <Switch>
                 <Route exact path="/">
                     <Carousel />

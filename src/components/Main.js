@@ -3,24 +3,19 @@ import React from 'react'
 import '../styles/Home.css';
 import Router from './Router'
 import Logout from './auth/Logout'
+import MapContainer from './googlemap/MapContainer'
 
 
 const Main = () => {
-//   const { token, setToken } = useToken();
-
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
-  
     return(
+      <div>
         <div className="wrapper">
             <Router/>
-            {/* <Logout setToken={setToken}/> */}
-            
         </div>
-
-
-
+        <div>
+          <MapContainer/>
+        </div>
+      </div>
     )
 
 }
