@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useCookie } from "react-use"
 import Select from 'react-select'
 import DatePicker from 'react-datepicker'
+import MapContainer from '../googlemap/MapContainer'
 
 import '../../styles/screens/Booking.css'
 import 'react-datepicker/dist/react-datepicker.css'
+
 
 const Booking = () => {
     const [valueToken, updateCookie, deleteCookie] = useCookie("token");
@@ -14,6 +16,9 @@ const Booking = () => {
     const [bookingPrice, setBookingPrice] = useState(0)
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
+    const [placeId, setPlaceId] = useState("ChIJsU1CR_eNTTARAuhXB4gs154")
+    const [currentLocation, setCurrentLocation] = useState({})
+    const [placeName, setPlaceName] = useState("Thailand")
 
     async function bookingHostel() {
         return fetch('http://localhost:8000/booking', {
@@ -45,13 +50,29 @@ const Booking = () => {
             const hostelData = await hostelResponse.json();
             setHostel(hostelData.data)
         }
+
+        const proxyurl = "https://cors-anywhere.herokuapp.com/"
+        const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}` // site that doesn’t send Access-Control-*
+        const hostailDetail = fetch(proxyurl + url, {
+                        method: 'GET',
+                    })
+                    .then(response => response.json())
+                    .then((contents) => {
+                        return contents.result.geometry.location
+                    })
+                    // .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+        const printAddress = async () => {
+                const latLong = await hostailDetail;
+                setCurrentLocation(latLong)
+            }
+        printAddress()
         fetchHostel()
-    },[hostel])
+    },[placeId])
 
     const options = []
 
     hostel.forEach(hostel => {
-        options.push({value: hostel._id, label: hostel.name, price: hostel.price})
+        options.push({value: hostel._id, label: hostel.name, price: hostel.price, placeId: hostel.googlePlaceId})
     });
 
     const handleChange = (newValue, actionMeta) => {
@@ -60,9 +81,13 @@ const Booking = () => {
         if(newValue !== null){
             setBooking(newValue.value)
             setBookingPrice(newValue.price)
+            setPlaceId(newValue.placeId)
+            setPlaceName(newValue.label)
         }else{
             setBooking("")
             setBookingPrice(0)
+            setPlaceId("ChIJsU1CR_eNTTARAuhXB4gs154")
+            setPlaceName("Thailand")
         }
         console.log(`action: ${actionMeta.action}`);
         console.groupEnd();
@@ -88,10 +113,8 @@ const Booking = () => {
         )
     
     }
-
-
-
     return (
+        <div>
         <div className="booking-wrapper select-wrapper-container">
             <h1>Choose Hostel</h1>
             <div>
@@ -136,6 +159,10 @@ const Booking = () => {
                     <button style={{ marginTop: 10 }} type="submit">Submit</button>
                 </form>
             </div>
+      </div>
+      <div>
+          <MapContainer currentLocation={currentLocation} placeName={placeName}/>
+      </div>
       </div>
     )
 }
