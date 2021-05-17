@@ -7,6 +7,7 @@ import Navbar from './screens/nav'
 import Carousel from './screens/carousel'
 import Login from './auth/Login'
 import useToken from './auth/useToken'
+import Register from './auth/Register'
 import Logout from './auth/Logout'
 
 const Router = () => {
@@ -28,6 +29,9 @@ const Router = () => {
                 </Route>
                 <Route path="/login">
                     <Login setToken={setToken} />
+                </Route>
+                <Route path="/register">
+                   <Register/>
                 </Route>
             </Switch>
         </BrowserRouter>
