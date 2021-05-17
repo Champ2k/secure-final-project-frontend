@@ -8,7 +8,7 @@ import '../../styles/Home.css'
 const Navbar = () => {
     return (
         <NavbarBootstrap collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-  <Link to="/home">
+  <Link to="/">
             <img
                 src={logo}
                 width="50"

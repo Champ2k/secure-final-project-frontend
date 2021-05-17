@@ -5,7 +5,6 @@ import Login from './auth/Login'
 import Router from './Router'
 import useToken from './auth/useToken'
 import Logout from './auth/Logout'
-import Carousel from './screens/carousel'
 
 
 const Main = () => {
@@ -19,7 +18,7 @@ const Main = () => {
         <div className="wrapper">
             <Router/>
             <Logout setToken={setToken}/>
-            <Carousel />
+            
         </div>
 
 
