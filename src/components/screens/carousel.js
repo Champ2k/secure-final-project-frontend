@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const Carousel = () => {
     return (
         <CarouselBootstrap>
-            <CarouselBootstrap.Item interval={1000}>
+            <CarouselBootstrap.Item interval={5000}>
                 <img
                     className="d-block w-100"
                     src={BedBike}
@@ -22,7 +22,7 @@ const Carousel = () => {
                 <h3>Bed & Bike, Willemstad, Curaçao</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={1000}>
+            <CarouselBootstrap.Item interval={5000}>
                 <img
                 className="d-block w-100"
                 src={fieldHouse}
@@ -34,7 +34,7 @@ const Carousel = () => {
                 <h3>FieldHouse Jones, Chicago</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={1000}>
+            <CarouselBootstrap.Item interval={5000}>
                 <img
                 className="d-block w-100"
                 src={freeHand}
@@ -47,7 +47,7 @@ const Carousel = () => {
                 <h3>Freehand, Miami Beach, Florida</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={1000}>
+            <CarouselBootstrap.Item interval={5000}>
                 <img
                 className="d-block w-100"
                 src={generatorCopenhagen}
@@ -60,7 +60,7 @@ const Carousel = () => {
                 <h3>Generator Hostel, Copenhagen</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={1000}>
+            <CarouselBootstrap.Item interval={5000}>
                 <img
                 className="d-block w-100"
                 src={wiredJapan}

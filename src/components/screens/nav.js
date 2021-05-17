@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarBootstrap from 'react-bootstrap/Navbar'
 import NavBootstrap from 'react-bootstrap/Nav'
-import { Button } from 'react-bootstrap';
 import logo from '../../assets/img/review.png'
 import {Link} from 'react-router-dom'
 import '../../styles/Home.css'
@@ -33,8 +32,6 @@ const Navbar = () => {
         </Link>
       </div>
   </NavbarBootstrap.Collapse>
-
-  
 </NavbarBootstrap>
 
     )
