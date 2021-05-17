@@ -5,6 +5,7 @@ import Login from './auth/Login'
 import Router from './Router'
 import useToken from './auth/useToken';
 import Logout from './auth/Logout'
+import MapContainer from './googlemap/MapContainer'
 
 
 const Main = () => {
@@ -15,10 +16,15 @@ const Main = () => {
   }
   
     return(
+      <div>
         <div className="wrapper">
             <Router/>
             <Logout setToken={setToken}/>
         </div>
+        <div>
+          <MapContainer/>
+        </div>
+      </div>
     )
 }
 
