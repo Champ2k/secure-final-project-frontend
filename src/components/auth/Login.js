@@ -22,9 +22,8 @@ export default function Login({ setToken }) {
     const token = await loginUser({
       username,
       password
-    });
-    console.log(token)
-    setToken(token);
+    })
+    setToken(token.data);
   }
 
   return(

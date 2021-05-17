@@ -24,7 +24,7 @@ const Navbar = () => {
       <Link to="/hostel">Hostel</Link>
     </NavBootstrap>
     <div className="navbar-nav ms-lg-4">
-        <Link className="nav-item nav-link" to="/signin">Sign in</Link>
+        <Link className="nav-item nav-link" to="/login">Sign in</Link>
       </div>
       <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
         <Link to="/register" class="btn btn-sm btn-primary w-full w-lg-auto">
