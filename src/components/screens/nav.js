@@ -7,7 +7,6 @@ import '../../styles/Home.css'
 import { useHistory } from 'react-router-dom';
 
 const Navbar = ({ token, setToken, deleteToken, deleteUserId }) => {
-  console.log('Nave Token', token)
   const history = useHistory()
 
   const handleLogout = async e => {

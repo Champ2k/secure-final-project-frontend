@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import React, { useState } from 'react';
+import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import CurrentLocation from './CurrentLocation';
 
 const MapContainer = (props) => {

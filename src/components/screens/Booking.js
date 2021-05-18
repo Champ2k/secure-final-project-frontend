@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useCookie } from "react-use"
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 import DatePicker from 'react-datepicker'
 import MapContainer from '../googlemap/MapContainer'
 
 import '../../styles/screens/Booking.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-
-const Booking = () => {
+const Booking = (props) => {
     const [valueToken, updateCookie, deleteCookie] = useCookie("token");
     const [valueUser, updateCookieUser, deleteCookieUser] = useCookie("userId")
-    const [hostel, setHostel] = useState([])
+    // const [hostel, setHostel] = useState([])
     const [booking, setBooking] = useState([])
     const [bookingPrice, setBookingPrice] = useState(0)
     const [startDate, setStartDate] = useState(new Date())
@@ -19,13 +18,16 @@ const Booking = () => {
     const [placeId, setPlaceId] = useState("ChIJsU1CR_eNTTARAuhXB4gs154")
     const [currentLocation, setCurrentLocation] = useState({})
     const [placeName, setPlaceName] = useState("Thailand")
+    // const [options, setOptions] = useState([])
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/"
 
     async function bookingHostel() {
         return fetch('http://localhost:8000/booking', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${valueToken}`
+            'Authorization': `Bearer ${valueToken}`,
             },
             body: JSON.stringify({
                 'userId' : valueUser,
@@ -38,42 +40,30 @@ const Booking = () => {
         .then(data => data.json())
        }
 
-
-    useEffect(() => {
-        async function fetchHostel(){
-            const hostelResponse = await fetch(`http://localhost:8000/hostel/`,{
-                method:'GET',
-                headers: {
-                'Authorization': `Bearer ${valueToken}`
+        useEffect(() => {
+        async function mapDetail(){
+            // const proxyurl = "https://cors-anywhere.herokuapp.com/"
+            const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}` // site that doesn’t send Access-Control-*
+            const hostailDetail = await fetch(proxyurl + url, {
+                            method: 'GET',
+                            headers:{
+                                'Access-Control-Allow-Origin': '*'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then((contents) => {
+                            return contents.result.geometry.location
+                        })
+                        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            const printAddress = async () => {
+                    const latLong = await hostailDetail;
+                    console.log(latLong)
+                    setCurrentLocation(latLong)
                 }
-            })
-            const hostelData = await hostelResponse.json();
-            setHostel(hostelData.data)
-        }
-
-        const proxyurl = "https://cors-anywhere.herokuapp.com/"
-        const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}` // site that doesn’t send Access-Control-*
-        const hostailDetail = fetch(proxyurl + url, {
-                        method: 'GET',
-                    })
-                    .then(response => response.json())
-                    .then((contents) => {
-                        return contents.result.geometry.location
-                    })
-                    // .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-        const printAddress = async () => {
-                const latLong = await hostailDetail;
-                setCurrentLocation(latLong)
+                printAddress()
             }
-        printAddress()
-        fetchHostel()
+            mapDetail()
     },[placeId])
-
-    const options = []
-
-    hostel.forEach(hostel => {
-        options.push({value: hostel._id, label: hostel.name, price: hostel.price, placeId: hostel.googlePlaceId})
-    });
 
     const handleChange = (newValue, actionMeta) => {
         console.group('Value Changed');
@@ -111,7 +101,6 @@ const Booking = () => {
                 "checkOutDate": endDate
             }),
         )
-    
     }
     return (
         <div>
@@ -123,7 +112,7 @@ const Booking = () => {
                     isClearable
                     onChange={handleChange}
                     onInputChange={handleInputChange}
-                    options={options}
+                    options={props.options}
                     className='select-wrapper'
                     />
                     <div style={{ marginTop: 10 }}>

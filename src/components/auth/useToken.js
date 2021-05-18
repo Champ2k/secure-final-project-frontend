@@ -5,14 +5,7 @@ export default function useToken() {
   const [valueToken, updateCookie, deleteCookie] = useCookie("token");
   const [valueUser, updateCookieUser, deleteCookieUser] = useCookie("userId")
 
-  const getToken = () => {
-    const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.data
-  };
-
-  const [token, setToken] = useState(getToken());
-
+  const [token, setToken] = useState();
 
   const saveToken = userToken => {
     // localStorage.setItem('token', JSON.stringify(userToken.data));
@@ -23,7 +16,7 @@ export default function useToken() {
 
   return {
     setToken: saveToken,
-    token,
+    token: valueToken,
     deleteToken: deleteCookie,
     deleteUserId: deleteCookieUser
   }
