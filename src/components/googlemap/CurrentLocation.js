@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import '../../styles/googleMap/mapContainer.css'
+
 const mapStyles = {
   map: {
     position: 'absolute',
     width: '50%',
-    height: '50%',
+    height: '100%',
   }
 };
 
@@ -65,6 +67,7 @@ export class CurrentLocation extends React.Component {
           const maps = google.maps;
     
           const mapRef = this.refs.map;
+          console.log(mapRef)
     
           // reference to the actual DOM element
           const node = ReactDOM.findDOMNode(mapRef);
@@ -82,6 +85,7 @@ export class CurrentLocation extends React.Component {
           );
     
           // maps.Map() is constructor that instantiates the map
+          console.log(node)
           this.map = new maps.Map(node, mapConfig);
         }
       }

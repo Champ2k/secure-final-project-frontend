@@ -10,15 +10,16 @@ import 'react-datepicker/dist/react-datepicker.css'
 const Booking = (props) => {
     const [valueToken, updateCookie, deleteCookie] = useCookie("token");
     const [valueUser, updateCookieUser, deleteCookieUser] = useCookie("userId")
-    // const [hostel, setHostel] = useState([])
     const [booking, setBooking] = useState([])
     const [bookingPrice, setBookingPrice] = useState(0)
     const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
+    const today = startDate;
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate()+1);
+    const [endDate, setEndDate] = useState(tomorrow)
     const [placeId, setPlaceId] = useState("ChIJsU1CR_eNTTARAuhXB4gs154")
     const [currentLocation, setCurrentLocation] = useState({})
     const [placeName, setPlaceName] = useState("Thailand")
-    // const [options, setOptions] = useState([])
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/"
 
@@ -71,7 +72,12 @@ const Booking = (props) => {
         if(newValue !== null){
             setBooking(newValue.value)
             setBookingPrice(newValue.price)
-            setPlaceId(newValue.placeId)
+            if(newValue.placeId !== undefined){
+                setPlaceId(newValue.placeId)
+            }else{
+               console.log("PlaceId is undefined")
+               
+            }
             setPlaceName(newValue.label)
         }else{
             setBooking("")
@@ -149,9 +155,7 @@ const Booking = (props) => {
                 </form>
             </div>
       </div>
-      <div>
           <MapContainer currentLocation={currentLocation} placeName={placeName}/>
-      </div>
       </div>
     )
 }

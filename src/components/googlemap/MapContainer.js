@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import CurrentLocation from './CurrentLocation';
 
+import '../../styles/googleMap/mapContainer.css'
+
+
 const MapContainer = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false)
   const [activeMarker, setActiveMarker] = useState({})
@@ -20,6 +23,7 @@ const MapContainer = (props) => {
         }
     };
     return (
+      <div className="google-map">
       <CurrentLocation
         centerAroundCurrentLocation
         google={props.google}
@@ -40,6 +44,7 @@ const MapContainer = (props) => {
           </div>
         </InfoWindow>
         </CurrentLocation>
+        </div>
     );
   }
 
