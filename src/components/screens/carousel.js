@@ -14,7 +14,7 @@ const Carousel = () => {
                 <img
                     className="d-block w-100"
                     src={fieldHouse}
-                    alt="Second slide"
+                    alt="First slide"
                     height={600}
                     style={{objectFit:'cover'}}
                 />
@@ -26,7 +26,7 @@ const Carousel = () => {
                 <img
                     className="d-block w-100"
                     src={freeHand}
-                    alt="Third slide"
+                    alt="Second slide"
                     height={600}
                     style={{objectFit:'cover'}}
                 />
@@ -38,7 +38,7 @@ const Carousel = () => {
                 <img
                     className="d-block w-100"
                     src={BedBike}
-                    alt="First slide"
+                    alt="Third slide"
                     height={600}
                     style={{objectFit:'cover'}}
                 />
