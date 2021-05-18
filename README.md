@@ -1,4 +1,4 @@
-# Mek's Hostel Web Application
+# Secure Hostel Web Application
 An application used to book hostel but with more security according to OWASP.
 
 ## Getting Started
