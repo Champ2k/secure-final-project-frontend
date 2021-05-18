@@ -12,7 +12,7 @@ h1 {
 p {
     font-family: 'Roboto', sans-serif;
 }
-label {
+.login-label {
     display: flex;
     align-items: center;
 }
@@ -23,7 +23,7 @@ input[type=password] {
     margin: 0 0 27px 17px;
 }
 
-button {
+.login-button {
     background-color: #343A40;
     color: white;
     padding: 10px 90px;
