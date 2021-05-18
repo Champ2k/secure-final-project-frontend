@@ -26,8 +26,6 @@ async function userValidate(data){
   .then(result => {
     return result
   })
-  // console.log(result))
-  // .catch(error => console.log('error', error));
 }
 
 export default function Register(){
