@@ -11,3 +11,14 @@
     position: relative;
     z-index: 1;
 }
+
+button {
+    background-color: #343A40;
+    color: white;
+    padding: 10px 90px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    font-family: 'Roboto',
+        sans-serif;
+}
