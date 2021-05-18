@@ -9,8 +9,32 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Carousel = () => {
     return (
-        <CarouselBootstrap>
-            <CarouselBootstrap.Item interval={5000}>
+        <CarouselBootstrap fade>
+            <CarouselBootstrap.Item interval={4000}>
+                <img
+                    className="d-block w-100"
+                    src={fieldHouse}
+                    alt="Second slide"
+                    height={600}
+                    style={{objectFit:'cover'}}
+                />
+                <CarouselBootstrap.Caption>
+                    <h3>FieldHouse Jones, Chicago</h3>
+                </CarouselBootstrap.Caption>
+            </CarouselBootstrap.Item>
+            <CarouselBootstrap.Item interval={4000}>
+                <img
+                    className="d-block w-100"
+                    src={freeHand}
+                    alt="Third slide"
+                    height={600}
+                    style={{objectFit:'cover'}}
+                />
+                <CarouselBootstrap.Caption>
+                    <h3>Freehand, Miami Beach, Florida</h3>
+                </CarouselBootstrap.Caption>
+            </CarouselBootstrap.Item>
+            <CarouselBootstrap.Item interval={4000}>
                 <img
                     className="d-block w-100"
                     src={BedBike}
@@ -19,61 +43,35 @@ const Carousel = () => {
                     style={{objectFit:'cover'}}
                 />
                 <CarouselBootstrap.Caption>
-                <h3>Bed & Bike, Willemstad, Curaçao</h3>
+                    <h3>Bed & Bike, Willemstad, Curaçao</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={5000}>
+            <CarouselBootstrap.Item interval={4000}>
                 <img
-                className="d-block w-100"
-                src={fieldHouse}
-                alt="Second slide"
-                height={600}
-                style={{objectFit:'cover'}}
+                    className="d-block w-100"
+                    src={generatorCopenhagen}
+                    alt="Fourth slide"
+                    height={600}
+                    style={{objectFit:'cover'}}
                 />
                 <CarouselBootstrap.Caption>
-                <h3>FieldHouse Jones, Chicago</h3>
+                 <h3>Generator Hostel, Copenhagen</h3>
                 </CarouselBootstrap.Caption>
-            </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={5000}>
+            </CarouselBootstrap.Item >
+            <CarouselBootstrap.Item interval={4000}>
                 <img
-                className="d-block w-100"
-                src={freeHand}
-                alt="Third slide"
-                height={600}
-
-                style={{objectFit:'cover'}}
+                    className="d-block w-100"
+                    src={wiredJapan}
+                    alt="Fifth slide"
+                    height={600}
+                    style={{objectFit:'cover'}}
                 />
                 <CarouselBootstrap.Caption>
-                <h3>Freehand, Miami Beach, Florida</h3>
-                </CarouselBootstrap.Caption>
-            </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={5000}>
-                <img
-                className="d-block w-100"
-                src={generatorCopenhagen}
-                alt="Fourth slide"
-                height={600}
-
-                style={{objectFit:'cover'}}
-                />
-                <CarouselBootstrap.Caption>
-                <h3>Generator Hostel, Copenhagen</h3>
-                </CarouselBootstrap.Caption>
-            </CarouselBootstrap.Item>
-            <CarouselBootstrap.Item interval={5000}>
-                <img
-                className="d-block w-100"
-                src={wiredJapan}
-                alt="Fifth slide"
-                height={600}
-
-                style={{objectFit:'cover'}}
-                />
-                <CarouselBootstrap.Caption>
-                <h3>The Wired, Tokyo</h3>
+                 <h3>The Wired, Tokyo</h3>
                 </CarouselBootstrap.Caption>
             </CarouselBootstrap.Item>
         </CarouselBootstrap>
+        
     )
 }
 export default Carousel
