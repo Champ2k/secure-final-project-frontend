@@ -1,0 +1,12 @@
+input[type=text]{
+border: black solid;
+}
+
+input[type=password]{
+    border: black solid;
+    }
+
+.regis {
+    margin: auto center;
+}
+

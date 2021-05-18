@@ -3,3 +3,11 @@
     flex-direction: column;
     align-items: center;
 }
+
+input[type=text]{
+    margin-right: 5px;
+    border: black solid;
+}
+input[type=password]{
+    border: black solid;
+}
