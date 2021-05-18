@@ -6,7 +6,22 @@ input[type=password]{
     border: black solid;
     }
 
+.regis-div {
+    display: flex;
+    justify-content: center;
+}
 .regis {
-    margin: auto center;
+    display: flex;
+    align-items: center;
 }
 
+.regis-button {
+    background-color: #343A40;
+    color: white;
+    padding: 10px 90px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    font-family: 'Roboto',
+        sans-serif;
+}
