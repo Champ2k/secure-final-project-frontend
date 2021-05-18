@@ -27,10 +27,8 @@ div {
 }
 
 .detail {
-    width: 280px;
     float: left;
-    padding: 20px;
-    width: 515px;
+    padding: 30px;
     background-color: #fff;
 }
 
