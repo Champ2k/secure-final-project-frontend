@@ -39,8 +39,8 @@ const Hostel = () => {
                     <p key={`data-detail-${index}`}>{data.detail}</p>
                 </div>
                 <div key={`detail-wrapper-div-${index}`} className="detail-wrapper">
-                    <p key={`data-name-${index}`} className="detail-header">{data.name}</p>
-                    <p key={`data-=price-${index}`}>{data.price}</p>
+                    <p key={`data-name-${index}`} className="detail-header"><b>{data.name}</b></p>
+                    <p key={`data-=price-${index}`}>Price: <b>{data.price}</b></p>
                 </div>
             </article>
                 )
