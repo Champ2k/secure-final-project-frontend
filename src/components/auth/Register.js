@@ -12,6 +12,23 @@ async function registerUser(data){
     })
 }
 
+async function userValidate(data){
+  return fetch("http://localhost:8000/user/validate",{
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data),
+  }
+  )
+  .then(response => response.json())
+  .then(result => {
+    return result
+  })
+  // console.log(result))
+  // .catch(error => console.log('error', error));
+}
+
 export default function Register(){
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -22,14 +39,26 @@ export default function Register(){
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await registerUser({
+    const userVal = await  userValidate({
       email,
       username,
       password,
       firstname,
       lastname,
     })
-    history.push('/');
+    if(userVal.data){
+      const token = await registerUser({
+        email,
+        username,
+        password,
+        firstname,
+        lastname,
+      })
+      console.log(userVal.message, ": Register Success")
+      history.push('/');
+    }else{
+      console.log(userVal.message, "Please Try Again")
+    }
   }
 
   return(
