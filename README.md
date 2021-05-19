@@ -26,7 +26,9 @@ The application requires:
 ### Step 2: Go to directory and install node modules
     npm install
 
-### Step 3: Run project
+### Step 3: Create the `.env` file from `.env.example`
+
+### Step 4: Run project
     npm start
 
 ### The website will run on http://localhost:3000/
