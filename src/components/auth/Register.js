@@ -54,7 +54,7 @@ export default function Register(){
         lastname,
       })
       console.log(userVal.message, ": Register Success")
-      history.push('/');
+      history.push('/login');
     }else{
       console.log(userVal.message, "Please Try Again")
     }
