@@ -8,31 +8,10 @@ import Carousel from './screens/carousel'
 import Login from './auth/Login'
 import useToken from './auth/useToken'
 import Register from './auth/Register'
-import Logout from './auth/Logout'
 
 const Router = () => {
     const { token, setToken, deleteToken, deleteUserId } = useToken();
-    const [options, setOptions] = useState([])
-
-    useEffect(() => {
-    async function fetchHostel(){
-        const hostelResponse = await fetch(`http://localhost:8000/hostel/`,{
-            method:'GET',
-        }).then(response => response.json())
-        .then((contents) => {
-            return contents.data
-        })
-        const option = []
-
-        hostelResponse.forEach(hostel => {
-            option.push({value: hostel._id, label: hostel.name, price: hostel.price, placeId: hostel.googlePlaceId})
-        });
-        console.log(option)
-        setOptions(option)
-    }
-    fetchHostel()
-},[])
-
+    
     return (
         <BrowserRouter>
             <Navbar token={token} setToken={setToken} deleteToken={deleteToken} deleteUserId={deleteUserId}/>
@@ -41,7 +20,7 @@ const Router = () => {
                     <Carousel />
                 </Route>
                 <Route path="/booking">
-                    <Booking options={options} />
+                    <Booking />
                 </Route>
                 <Route path="/hostel">
                     <Hostel />

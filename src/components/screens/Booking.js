@@ -17,11 +17,30 @@ const Booking = (props) => {
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate()+1);
     const [endDate, setEndDate] = useState(tomorrow)
-    const [placeId, setPlaceId] = useState("ChIJsU1CR_eNTTARAuhXB4gs154")
-    const [currentLocation, setCurrentLocation] = useState({})
+    const [currentLocation, setCurrentLocation] = useState({lat: 15.870032, lng: 100.992541})
     const [placeName, setPlaceName] = useState("Thailand")
+    const [options, setOptions] = useState([])
+    const [zoom, setZoom] = useState(5)
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/"
+    useEffect(() => {
+        async function fetchHostel(){
+            const hostelResponse = await fetch(`http://localhost:8000/hostel/`,{
+                    method:'GET',
+                })
+            const hostelData = await hostelResponse.json();
+            console.log(hostelData.data)
+            const option = []
+            hostelData.data.map(hostel => {
+                const googleData = JSON.parse(hostel.googlePlaceData)
+                console.log(googleData)
+                console.log("lat", googleData.result.geometry.location.lat)
+                option.push({value: hostel._id, label: hostel.name, price: hostel.price, placeId: hostel.googlePlaceId, Lat: googleData.result.geometry.location.lat, Long: googleData.result.geometry.location.lng })
+            });
+        setOptions(option)
+        console.log(option)
+        }
+        fetchHostel()
+    },[])
 
     async function bookingHostel() {
         return fetch('http://localhost:8000/booking', {
@@ -41,48 +60,26 @@ const Booking = (props) => {
         .then(data => data.json())
        }
 
-        useEffect(() => {
-        async function mapDetail(){
-            // const proxyurl = "https://cors-anywhere.herokuapp.com/"
-            const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}` // site that doesn’t send Access-Control-*
-            const hostailDetail = await fetch(proxyurl + url, {
-                            method: 'GET',
-                            headers:{
-                                'Access-Control-Allow-Origin': '*'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then((contents) => {
-                            return contents.result.geometry.location
-                        })
-                        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-            const printAddress = async () => {
-                    const latLong = await hostailDetail;
-                    console.log(latLong)
-                    setCurrentLocation(latLong)
-                }
-                printAddress()
-            }
-            mapDetail()
-    },[placeId])
 
     const handleChange = (newValue, actionMeta) => {
         console.group('Value Changed');
         console.log(newValue);
-        if(newValue !== null){
+        if(newValue !== null && newValue.hostelId !== null){
+            setZoom(14)
             setBooking(newValue.value)
             setBookingPrice(newValue.price)
-            if(newValue.placeId !== undefined){
-                setPlaceId(newValue.placeId)
-            }else{
-               console.log("PlaceId is undefined")
-               
-            }
             setPlaceName(newValue.label)
+            if(newValue.Lat !== null && newValue.Lat.Long !== null){
+                setCurrentLocation({
+                    lat: newValue.Lat,
+                    lng: newValue.Long
+                })
+            }
         }else{
-            setBooking("")
+            setZoom(5)
+            setCurrentLocation({lat: 15.870032, lng: 100.992541})
+            setBooking(null)
             setBookingPrice(0)
-            setPlaceId("ChIJsU1CR_eNTTARAuhXB4gs154")
             setPlaceName("Thailand")
         }
         console.log(`action: ${actionMeta.action}`);
@@ -118,7 +115,7 @@ const Booking = (props) => {
                     isClearable
                     onChange={handleChange}
                     onInputChange={handleInputChange}
-                    options={props.options}
+                    options={options}
                     className='select-wrapper'
                     />
                     <div style={{ marginTop: 10 }}>
@@ -155,7 +152,8 @@ const Booking = (props) => {
                 </form>
             </div>
       </div>
-          <MapContainer currentLocation={currentLocation} placeName={placeName}/>
+          <MapContainer zoom={zoom} currentLocation={currentLocation} placeName={placeName}/>
+            {/* <GoogleMap centerMove={centerMove}/> */}
       </div>
     )
 }

@@ -4,32 +4,18 @@ import '../../styles/screens/Hostel.css'
 
 
 const Hostel = () => {
-
-    const getToken = () => {
-        const tokenString = localStorage.getItem('token');
-        const userToken = JSON.parse(tokenString);
-        return userToken?.data
-      };
-
-
-    const [token] = useState(getToken())
     const [hostel, setHostel] = useState([])
-
 
     useEffect(() => {
         async function fetchHostel(){
             const hostelResponse = await fetch(`http://localhost:8000/hostel/`,{
                 method:'GET',
-                headers: {
-                'Authorization': `Bearer ${token}`
-                }
             })
             const hostelData = await hostelResponse.json();
             setHostel(hostelData.data)
         }
         fetchHostel()
     },[])
-    console.log(hostel)
 
     return (
         <div>

@@ -27,11 +27,16 @@ div {
 }
 
 .detail {
+    flex-grow: 1;
     float: left;
     padding: 30px;
     background-color: #fff;
+    width: 515px;
+    height: 141px;
 }
-
+p{
+    overflow-wrap: break-word
+}
 .detail-header {
     margin-bottom: 10px;
 }

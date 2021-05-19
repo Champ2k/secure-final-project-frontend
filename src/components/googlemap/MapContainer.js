@@ -28,6 +28,7 @@ const MapContainer = (props) => {
         centerAroundCurrentLocation
         google={props.google}
         currentLocation={props.currentLocation}
+        zoom={props.zoom}
       >
       <Marker
       onClick={onMarkerClick}
